@@ -18,18 +18,7 @@ class LandingPage extends StatelessWidget {
             children: [
               const Spacer(),
               // App Logo / Intro Graphic
-              Container(
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(color: Colors.pink.withOpacity(0.2), blurRadius: 20, spreadRadius: 5),
-                  ],
-                ),
-                child: const Icon(Icons.favorite, size: 80, color: Colors.pink),
-              ),
+              Image.asset('lib/assets/kstore-square-pop.png', width: 250, height: 250),
               const SizedBox(height: 40),
               const Text(
                 'K-STORE',

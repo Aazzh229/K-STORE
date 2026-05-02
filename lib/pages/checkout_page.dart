@@ -9,6 +9,7 @@ class CheckoutPage extends StatefulWidget {
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
+  final _formKey = GlobalKey<FormState>();
   String _paymentMethod = 'Credit/Debit Card';
   String? _selectedBank;
   String? _selectedEWallet;
@@ -74,24 +75,38 @@ class _CheckoutPageState extends State<CheckoutPage> {
   Widget _buildLeftForm() {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(40.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text("Contact", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 10),
-          TextField(decoration: InputDecoration(labelText: "Email", border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)))),
-          const SizedBox(height: 30),
-          const Text("Shipping address", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              Expanded(child: TextField(decoration: InputDecoration(labelText: "First name", border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))))),
-              const SizedBox(width: 10),
-              Expanded(child: TextField(decoration: InputDecoration(labelText: "Last name", border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))))),
-            ],
-          ),
-          const SizedBox(height: 10),
-          TextField(decoration: InputDecoration(labelText: "Address", border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)))),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text("Contact", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10),
+            TextFormField(
+              decoration: InputDecoration(labelText: "Email", border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))),
+              validator: (v) => v == null || v.isEmpty ? 'Email tidak boleh kosong' : null,
+            ),
+            const SizedBox(height: 30),
+            const Text("Shipping address", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(child: TextFormField(
+                  decoration: InputDecoration(labelText: "First name", border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))),
+                  validator: (v) => v == null || v.isEmpty ? 'Wajib diisi' : null,
+                )),
+                const SizedBox(width: 10),
+                Expanded(child: TextFormField(
+                  decoration: InputDecoration(labelText: "Last name", border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))),
+                  validator: (v) => v == null || v.isEmpty ? 'Wajib diisi' : null,
+                )),
+              ],
+            ),
+            const SizedBox(height: 10),
+            TextFormField(
+              decoration: InputDecoration(labelText: "Address", border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))),
+              validator: (v) => v == null || v.isEmpty ? 'Alamat tidak boleh kosong' : null,
+            ),
           const SizedBox(height: 40),
 
           const Text("Voucher", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
@@ -123,13 +138,22 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                       child: Column(
                         children: [
-                          TextField(decoration: InputDecoration(prefixIcon: const Icon(Icons.credit_card, size: 20), labelText: "Card number", isDense: true, border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)))),
+                          TextFormField(
+                            decoration: InputDecoration(prefixIcon: const Icon(Icons.credit_card, size: 20), labelText: "Card number", isDense: true, border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
+                            validator: (v) => _paymentMethod == 'Credit/Debit Card' && (v == null || v.isEmpty) ? 'Wajib diisi' : null,
+                          ),
                           const SizedBox(height: 12),
                           Row(
                             children: [
-                              Expanded(child: TextField(decoration: InputDecoration(prefixIcon: const Icon(Icons.date_range, size: 20), labelText: "EXP Date", isDense: true, border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))))),
+                              Expanded(child: TextFormField(
+                                decoration: InputDecoration(prefixIcon: const Icon(Icons.date_range, size: 20), labelText: "EXP Date", isDense: true, border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
+                                validator: (v) => _paymentMethod == 'Credit/Debit Card' && (v == null || v.isEmpty) ? 'Wajib' : null,
+                              )),
                               const SizedBox(width: 12),
-                              Expanded(child: TextField(decoration: InputDecoration(prefixIcon: const Icon(Icons.lock_outline, size: 20), labelText: "CVV", isDense: true, border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))))),
+                              Expanded(child: TextFormField(
+                                decoration: InputDecoration(prefixIcon: const Icon(Icons.lock_outline, size: 20), labelText: "CVV", isDense: true, border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
+                                validator: (v) => _paymentMethod == 'Credit/Debit Card' && (v == null || v.isEmpty) ? 'Wajib' : null,
+                              )),
                             ],
                           ),
                         ],
@@ -157,6 +181,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           _selectedBank = value;
                         });
                       },
+                      validator: (v) => _paymentMethod == 'Bank Transfer / Virtual Account' && v == null ? 'Pilih bank' : null,
                     ),
                   ),
                 const Divider(height: 1),
@@ -181,6 +206,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           _selectedEWallet = value;
                         });
                       },
+                      validator: (v) => _paymentMethod == 'E-Wallet (Gopay/OVO/Dana)' && v == null ? 'Pilih E-Wallet' : null,
                     ),
                   ),
                 const Divider(height: 1),
@@ -195,42 +221,44 @@ class _CheckoutPageState extends State<CheckoutPage> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.pink, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
               onPressed: () {
-                // Dummy checkout complete logic
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(Icons.check_circle, color: Colors.green, size: 80),
-                        const SizedBox(height: 16),
-                        const Text('Payment Successful!', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                        const SizedBox(height: 8),
-                        const Text('Your order has been placed successfully.', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey)),
-                        const SizedBox(height: 24),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(backgroundColor: Colors.pink, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
-                            onPressed: () {
-                              cartProvider.items.clear();
-                              Navigator.of(context).pop(); // Close dialog
-                              Navigator.of(context).pop(); // Close checkout
-                            },
-                            child: const Text('Back to Home', style: TextStyle(color: Colors.white)),
-                          ),
-                        )
-                      ],
+                if (_formKey.currentState!.validate()) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.check_circle, color: Colors.green, size: 80),
+                          const SizedBox(height: 16),
+                          const Text('Payment Successful!', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                          const SizedBox(height: 8),
+                          const Text('Your order has been placed successfully.', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey)),
+                          const SizedBox(height: 24),
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(backgroundColor: Colors.pink, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
+                              onPressed: () {
+                                cartProvider.items.clear();
+                                Navigator.of(context).pop(); // Close dialog
+                                Navigator.of(context).pop(); // Close checkout
+                              },
+                              child: const Text('Back to Home', style: TextStyle(color: Colors.white)),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                );
+                  );
+                }
               },
               child: const Text("Pay now", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
             ),
           ),
         ],
       ),
+    ),
     );
   }
 

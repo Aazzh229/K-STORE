@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                   SliverAppBar(
                     backgroundColor: Colors.white,
                     automaticallyImplyLeading: false,
-                    title: const Text('K-STORE', style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 24)),
+                    title: Image.asset('lib/assets/kstore-header-pop.png', height: 40),
                     floating: true,
                     pinned: true,
                     elevation: 0,
@@ -153,10 +153,10 @@ class _HomePageState extends State<HomePage> {
     return ListView(
       padding: const EdgeInsets.only(top: 16, bottom: 40),
       children: [
-        ...groupList.map((group) {
+        ...groupList.where((g) => g != 'GIFT CARD').map((group) {
           final products = tabProducts.where((p) => p.groupName == group).toList();
           return GroupSection(groupName: group, products: products);
-        }).toList(),
+        }),
         
         const Padding(
           padding: EdgeInsets.only(top: 40, bottom: 20, left: 16),
