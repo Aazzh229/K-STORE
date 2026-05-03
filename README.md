@@ -10,31 +10,44 @@
 *   **Landing Page Modern**: Disambut dengan branding K-STORE terbaru yang bersih dan dinamis.
 *   **Sign In & Sign Up**: Sistem registrasi pengguna untuk mengelola profil dan riwayat pesanan.
 *   **Validasi Formulir**: Keamanan data terjamin dengan validasi input yang ketat pada setiap kolom pendaftaran.
+<img width="964" height="1022" alt="Screenshot 2026-05-03 104508" src="https://github.com/user-attachments/assets/0ab0f7bc-9a55-47f6-92a6-1839f56f833d" />
+<img width="1920" height="1020" alt="Screenshot 2026-05-03 104951" src="https://github.com/user-attachments/assets/3d51fa73-8871-4f01-9e09-d8d75701da1f" />
 
 ### 2.  Beranda Interaktif (Home Engine)
 *   **Banner Slider**: Informasi promo dan rilis terbaru yang ditampilkan secara visual melalui slider di bagian atas.
 *   **Menu Kategori & Group**: Navigasi cepat untuk memfilter produk berdasarkan kategori atau grup idol favorit.
 *   **Sistem Voucher**: Fitur klaim voucher diskon dan gratis ongkir langsung dari beranda.
 *   **Produk Tabulasi**: Pemisahan produk kondisi **NEW** (Baru) dan **SECOND** (Pre-loved) untuk pilihan koleksi yang lebih luas.
+<img width="1920" height="1020" alt="Screenshot 2026-05-03 104538" src="https://github.com/user-attachments/assets/b4104bab-e74c-4605-8306-e95660b64342" />
+<img width="1920" height="1020" alt="Screenshot 2026-05-03 104547" src="https://github.com/user-attachments/assets/2b64e94b-e448-4f27-bd6d-afedab012261" /><img width="1920" height="1020" alt="Screenshot 2026-05-03 104559" src="https://github.com/user-attachments/assets/1cfcdbee-5627-4346-b22e-7c9d85fa886d" />
+
 
 ### 3.  Katalog & Detail Produk
 *   **Label Eksklusif**: Penanda visual untuk produk **Best Seller** dan label **Sale** untuk item promo.
 *   **Informasi Detail**: Deskripsi produk lengkap, harga yang dicoret (diskon), dan rating bintang.
 *   **Interaksi Cepat**: Tambahkan ke keranjang belanja hanya dengan satu ketukan.
+<img width="1920" height="1020" alt="Screenshot 2026-05-03 104800" src="https://github.com/user-attachments/assets/8c2e6434-3ef2-446a-9fd4-484ced6971a7" />
+
 
 ### 4.  K-STORE Gift Cards
 *   Halaman khusus untuk pembelian kartu hadiah digital dengan nominal yang beragam, cocok untuk kado sesama fans.
 *   Formulir khusus pembelian Gift Card dengan pesan personal.
+<img width="1920" height="1020" alt="Screenshot 2026-05-03 104705" src="https://github.com/user-attachments/assets/9d45d92b-b0f8-40e9-a87b-87e6da047abf" />
+
 
 ### 5.  Sistem Checkout 
 *   **Voucher Selector**: Masukkan kode voucher (contoh: `KSTORELOVE`) untuk mendapatkan potongan harga instan.
 *   **Form Validation**: Seluruh data pengiriman (Email, Alamat, Nama) wajib diisi untuk mencegah kesalahan pengiriman.
 *   **Metode Pembayaran Lengkap**: Mendukung Kartu Kredit/Debit, Bank Transfer (Virtual Account), dan E-Wallet (Gopay, OVO, Dana).
 *   **Konfirmasi Pembayaran**: Dialog sukses premium setelah transaksi berhasil diselesaikan.
+<img width="1920" height="1020" alt="Screenshot 2026-05-03 104817" src="https://github.com/user-attachments/assets/b27dee43-e27e-4dc7-9b32-c462b5c03366" />
+
 
 ### 6.  Manajemen Profil & Riwayat
 *   **Profil Pengguna**: Lihat informasi diri dan kelola akun.
 *   **Riwayat Pesanan (Order History)**: Lihat kembali detail transaksi masa lalu lengkap dengan metode pembayaran yang digunakan.
+<img width="1920" height="1020" alt="Screenshot 2026-05-03 104737" src="https://github.com/user-attachments/assets/8f69f28a-7fac-4219-bcd3-06093ea2bfca" />
+
 
 ---
 
